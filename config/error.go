@@ -15,35 +15,9 @@
 package config
 
 import (
-	"strconv"
+	"errors"
 )
 
-const (
-	KeyPort string = "port"
-
-	defaultPort = 3000
+var (
+	ErrFieldInvalidPortType = errors.New("invalid port type")
 )
-
-// Config represents configuration needed for HTTP Source connector.
-type Config struct {
-	// Port - HTTP server will run in this port.
-	Port int
-}
-
-// Parse attempts to parse plugins.Config into a Config struct.
-func Parse(cfg map[string]string) (Config, error) {
-	port := defaultPort
-
-	if cfg[KeyPort] != "" {
-		result, err := strconv.Atoi(cfg[KeyPort])
-		if err != nil {
-			return Config{}, ErrFieldInvalidPortType
-		}
-
-		port = result
-	}
-
-	return Config{
-		Port: port,
-	}, nil
-}
