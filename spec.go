@@ -16,6 +16,8 @@ package httpserver
 
 import (
 	sdk "github.com/conduitio/conduit-connector-sdk"
+
+	"github.com/conduitio-labs/conduit-connector-http-server/config"
 )
 
 type Spec struct{}
@@ -27,8 +29,14 @@ func Specification() sdk.Specification {
 		Summary: "An HTTP server plugin for Conduit, written in Go.",
 		Description: "The HTTP server connector is one of Conduit plugins." +
 			"It provides the source and destination http connector.",
-		Version:      "v0.1.0",
-		Author:       "Meroxa, Inc.",
-		SourceParams: nil,
+		Version: "v0.1.0",
+		Author:  "Meroxa, Inc.",
+		SourceParams: map[string]sdk.Parameter{
+			config.KeyPort: {
+				Default:     "3000",
+				Required:    false,
+				Description: "port for running http server",
+			},
+		},
 	}
 }
