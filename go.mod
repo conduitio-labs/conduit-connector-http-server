@@ -2,7 +2,10 @@ module github.com/conduitio-labs/conduit-connector-http-server
 
 go 1.18
 
-require github.com/conduitio/conduit-connector-sdk v0.2.1-0.20220530152250-733149cddc0b
+require (
+	github.com/conduitio/conduit-connector-sdk v0.2.1-0.20220530152250-733149cddc0b
+	github.com/google/uuid v1.1.2
+)
 
 require (
 	github.com/conduitio/conduit-connector-protocol v0.2.0 // indirect
