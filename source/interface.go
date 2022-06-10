@@ -12,19 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package main
+package source
 
 import (
-	sdk "github.com/conduitio/conduit-connector-sdk"
+	"context"
 
-	httpserver "github.com/conduitio-labs/conduit-connector-http-server"
-	"github.com/conduitio-labs/conduit-connector-http-server/source"
+	sdk "github.com/conduitio/conduit-connector-sdk"
 )
 
-func main() {
-	sdk.Serve(sdk.Connector{
-		NewSpecification: httpserver.Specification,
-		NewSource:        source.New,
-		NewDestination:   nil,
-	})
+// HTTPServer http server for listening request.
+type HTTPServer interface {
+	Start()
+	Stop(ctx context.Context) error
+	GetRecord(ctx context.Context) (sdk.Record, error)
 }
